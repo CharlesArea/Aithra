@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "identifier": "com.aithra.email",
   "build": {
-    "devtools": true,
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:5173",
     "beforeBuildCommand": "npm run build",
