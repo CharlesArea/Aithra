@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aithra - Email Client</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Aithra</h2>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-btn active" data-view="inbox">📥 Inbox</button>
+                <button class="nav-btn" data-view="sent">📤 Sent</button>
+                <button class="nav-btn" data-view="compose">✏️ Compose</button>
+                <button class="nav-btn" data-view="accounts">⚙️ Accounts</button>
+            </nav>
+            <div class="account-selector">
+                <select id="accountSelect">
+                    <option value="">Select Account</option>
+                </select>
+            </div>
+        </aside>
+        <main class="main-content">
+            <div id="inboxView" class="view active">
+                <div class="view-header">
+                    <h3>Inbox</h3>
+                    <button class="btn" id="refreshBtn">Refresh</button>
+                </div>
+                <div class="email-list" id="emailList">
+                    <div class="empty-state"><p>Select an account to view emails</p></div>
+                </div>
+            </div>
+            <div id="emailDetailView" class="view">
+                <div class="view-header">
+                    <button class="btn btn-back" id="backToList">← Back</button>
+                    <h3>Email</h3>
+                </div>
+                <div class="email-detail" id="emailDetail">
+                    <div class="email-header">
+                        <div class="email-field"><label>From:</label><span id="detailFrom"></span></div>
+                        <div class="email-field"><label>Subject:</label><span id="detailSubject"></span></div>
+                        <div class="email-field"><label>Date:</label><span id="detailDate"></span></div>
+                    </div>
+                    <div class="email-body" id="detailBody"></div>
+                </div>
+            </div>
+            <div id="composeView" class="view">
+                <div class="view-header"><h3>New Email</h3></div>
+                <form class="compose-form" id="composeForm">
+                    <div class="form-group">
+                        <label>To:</label>
+                        <input type="email" id="composeTo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject:</label>
+                        <input type="text" id="composeSubject" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Body:</label>
+                        <textarea id="composeBody" required></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+            <div id="accountsView" class="view">
+                <div class="view-header">
+                    <h3>Email Accounts</h3>
+                    <button class="btn btn-primary" id="addAccountBtn">Add Account</button>
+                </div>
+                <div class="accounts-list" id="accountsList">
+                    <div class="empty-state"><p>No accounts configured</p></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Email Account</h3>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="accountForm">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="accountEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="accountPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>IMAP Host:</label>
+                    <input type="text" id="imapHost" required placeholder="imap.example.com">
+                </div>
+                <div class="form-group">
+                    <label>IMAP Port:</label>
+                    <input type="number" id="imapPort" value="993" required>
+                </div>
+                <div class="form-group">
+                    <label>SMTP Host:</label>
+                    <input type="text" id="smtpHost" required placeholder="smtp.example.com">
+                </div>
+                <div class="form-group">
+                    <label>SMTP Port:</label>
+                    <input type="number" id="smtpPort" value="465" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
